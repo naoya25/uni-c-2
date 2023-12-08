@@ -3,7 +3,7 @@
 #include <math.h>
 
 #define M 6
-#define N 3
+#define N 4
 
 double P[N + 1][N + 1];
 double A[N + 1];
@@ -66,11 +66,33 @@ void least_square(double *x, double *y, FILE *fout)
 
     gauss2(P, A);
 
-    fprintf(fout, "最小2乗近似式はy=\n");
+    fprintf(fout, "最小2乗近似式はy = ");
     for (i = N; i >= 0; i--)
     {
-        fprintf(fout, "+ %5.2f x^%d", A[i], i);
+        if (A[i] == 0)
+        {
+            continue;
+        }
+
+        if (i == N)
+        {
+            fprintf(fout, "%5.2f", A[i]);
+        }
+        else
+        {
+            fprintf(fout, " %c %5.2f", (A[i] >= 0) ? '+' : '-', fabs(A[i]));
+        }
+
+        if (i > 0)
+        {
+            fprintf(fout, " x");
+            if (i > 1)
+            {
+                fprintf(fout, "^%d", i);
+            }
+        }
     }
+
     fprintf(fout, "\n");
 }
 
