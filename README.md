@@ -2,5 +2,5 @@
 
 ```
 gcc name.c -o name.out
-./name.outA
+./name.out
 ```
