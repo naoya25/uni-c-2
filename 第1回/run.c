@@ -67,6 +67,7 @@ void least_square(double *x, double *y, FILE *fout)
     gauss2(P, A);
 
     fprintf(fout, "最小2乗近似式はy = ");
+    printf("最小2乗近似式はy = ");
     for (i = N; i >= 0; i--)
     {
         if (A[i] == 0)
@@ -77,23 +78,28 @@ void least_square(double *x, double *y, FILE *fout)
         if (i == N)
         {
             fprintf(fout, "%5.2f", A[i]);
+            printf("%5.2f", A[i]);
         }
         else
         {
             fprintf(fout, " %c %5.2f", (A[i] >= 0) ? '+' : '-', fabs(A[i]));
+            printf(" %c %5.2f", (A[i] >= 0) ? '+' : '-', fabs(A[i]));
         }
 
         if (i > 0)
         {
             fprintf(fout, " x");
+            printf(" x");
             if (i > 1)
             {
                 fprintf(fout, "^%d", i);
+                printf("^%d", i);
             }
         }
     }
 
     fprintf(fout, "\n");
+    printf("\n");
 }
 
 void input_vector2(double *b, char c, int n, FILE *fin, FILE *fout)
