@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define M 6
-#define N 4
+#define M 3
+#define N 2
 
 double P[N + 1][N + 1];
 double A[N + 1];
@@ -18,9 +18,9 @@ int main(void)
     double x[M];
     double y[M];
 
-    if ((fin = fopen("input_func.dat", "r")) == NULL)
+    if ((fin = fopen("input.dat", "r")) == NULL)
     {
-        printf("ファイルが見つかりません: input_func.dat \n");
+        printf("ファイルが見つかりません: input.dat \n");
         exit(1);
     }
     if ((fout = fopen("output_func.dat", "w")) == NULL)

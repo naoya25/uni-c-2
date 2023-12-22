@@ -1,6 +1,5 @@
 学校の課題の記録
-
 ```
-gcc name.c -o name.out
-./name.out
+gcc run.c -o run.out
+./run.out
 ```
