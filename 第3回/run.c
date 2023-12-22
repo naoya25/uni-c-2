@@ -11,6 +11,22 @@ double func2(double x)
     return 4 / (1 + x * x);
 }
 
+// 区分求積
+double rectangle(double a, double b, int n, double (*f)(double))
+{
+    double h = (b - a) / n;
+    double result = 0.0;
+
+    for (int i = 0; i < n; i++)
+    {
+        result += (*f)(a + i * h);
+    }
+
+    result *= h;
+    return result;
+}
+
+// 台形公式
 double trapezoidal(double a, double b, int n, double (*f)(double))
 {
     double h = (b - a) / n;
@@ -25,6 +41,7 @@ double trapezoidal(double a, double b, int n, double (*f)(double))
     return T;
 }
 
+// シンプソン公式
 double simpson(double a, double b, int n, double (*f)(double))
 {
     double h = (b - a) / (2 * n);
@@ -46,12 +63,18 @@ int main()
     {
         int n = nums[i];
 
+        double re_result1 = rectangle(1, 2, n, func1);
+        double re_result2 = rectangle(0, 1, n, func2);
         double tr_result1 = trapezoidal(1, 2, n, func1);
         double tr_result2 = trapezoidal(0, 1, n, func2);
         double si_result1 = simpson(1, 2, n, func1);
         double si_result2 = simpson(0, 1, n, func2);
 
         printf("分割数: %d\n", n);
+
+        printf("区分求積\n");
+        printf("func1[1,2]: %20.15f\n", re_result1);
+        printf("func2[0,1]: %20.15f\n", re_result2);
 
         printf("台形公式\n");
         printf("func1[1,2]: %20.15f\n", tr_result1);
@@ -61,11 +84,10 @@ int main()
         printf("func1[1,2]: %20.15f\n", si_result1);
         printf("func2[0,1]: %20.15f\n", si_result2);
 
-        printf("台形公式とシンプソン公式の誤差\n");
-        printf("func1: %20.15f\n", tr_result1 - si_result1);
-        printf("func2: %20.15f\n", tr_result2 - si_result2);
-
         printf("実際の積分値との誤差\n");
+        printf("区分求積\n");
+        printf("func1: %20.15f\n", 1 - re_result1);
+        printf("func2: %20.15f\n", M_PI - re_result2);
         printf("台形公式\n");
         printf("func1: %20.15f\n", 1 - tr_result1);
         printf("func2: %20.15f\n", M_PI - tr_result2);
